@@ -1,0 +1,56 @@
+baseURI = barrigarest.wcaquino.me
+
+Cenário 1:
+    Não deve acessar API sem TOKEN
+    GET /contas -> StatusCode 401
+
+Cenário 2:
+    Deve incluir conta com sucesso
+    POST /signin
+    Fazer login (email, senha), pegar TOKEN
+    POST /contas
+    Enviar nome
+
+Cenario 3:
+    Deve alterar conta com sucesso
+    PUT /contas/:id
+    Enviar novo nome
+
+Cenario 4:
+    Não deve incluir conta com nome repetido
+    POST /contas
+
+Cenario 5:
+    Deve inserir movimentacao com sucesso
+    POST /transacoes
+    Enviar:
+    conta_id
+    descricao
+    envolvido
+    tipo(DESP / REC) String
+    data_transacao (dd/MM/YYYY) String
+    data_pagamento (dd/MM/YYYY) String
+    valor (0.00f) float
+    status true/false
+
+Cenario 6:
+    Deve validar campos obrigatórios na movimentação
+    POST /transacoes
+
+Cenario 7:
+    Nao deve cadastrar movimentacao futura
+    POST /transacoes
+    data_transacao nao pode ser futura
+
+Cenario 8:
+    Nao deve remover uma conta com movimentacao
+    DELETE /contas/:id
+
+Cenario 9:
+    Deve calcular saldo Contas
+    GET /saldo
+    So retorna conta que tenha movimentacao
+
+Cenario 10:
+    Deve remover movimentacao
+    DELETE /transacoes/:id
