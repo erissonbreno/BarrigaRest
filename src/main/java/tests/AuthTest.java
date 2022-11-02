@@ -1,12 +1,13 @@
 package tests;
 
-import org.junit.Test;
+import core.BaseTest;
+import org.junit.jupiter.api.Test;
 
-import static funcionalidades.AuthFunc.acessoSemToken;
+import static funcionalidades.AuthFunc.accessWithoutToken;
 
-public class AuthTest {
+public class AuthTest extends BaseTest {
     @Test
-    public void naoDeveAcessarAPISemToken() {
-        acessoSemToken();
+    public void cannontAccessAPIWithoutToken() {
+        accessWithoutToken();
     }
 }

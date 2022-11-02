@@ -9,22 +9,22 @@ import static utils.Movimentacao.getMovimentacaoValida;
 
 public class MovimentacaoFunc extends BaseTest {
 
-    public static void criaMovimentacao() {
-        Movimentacao movimentacao = getMovimentacaoValida();
+    public static void createTransaction() {
+        Movimentacao transaction = getMovimentacaoValida();
         MOV_ID = given()
-                .body(movimentacao)
+                .body(transaction)
                 .when()
                 .post("/transacoes")
                 .then()
                 .statusCode(201)
                 .body("id", is(notNullValue()))
-                .body("descricao", is("Movimentacao Teste"))
+                .body("descricao", is("Test transaction"))
                 .body("valor", is("16000.00"))
                 .extract().path("id")
         ;
     }
 
-    public static void criaMovimentacaoInvalida() {
+    public static void createInvalidTransaction() {
         given()
                 .when()
                 .post("/transacoes")
@@ -40,11 +40,11 @@ public class MovimentacaoFunc extends BaseTest {
         ;
     }
 
-    public static void criaMovimentacaoInvalida(String data_transacao) {
-        Movimentacao movimentacao = getMovimentacaoValida();
-        movimentacao.setData_transacao(data_transacao);
+    public static void createInvalidTransaction(String data_transacao) {
+        Movimentacao transaction = getMovimentacaoValida();
+        transaction.setData_transacao(data_transacao);
         given()
-                .body(movimentacao)
+                .body(transaction)
                 .when()
                 .post("/transacoes")
                 .then()
@@ -53,7 +53,7 @@ public class MovimentacaoFunc extends BaseTest {
         ;
     }
 
-    public static void removeMovimentacao() {
+    public static void deleteTransaction() {
         given()
                 .pathParam("id", MOV_ID)
                 .when()

@@ -10,28 +10,28 @@ import static org.hamcrest.Matchers.is;
 
 public class ContasFunc extends BaseTest {
 
-    public static String criaConta() {
-        Map<String, String> conta = new HashMap<String, String>();
-        conta.put("nome", CONTA_NAME);
+    public static String createAccount() {
+        Map<String, String> account = new HashMap<String, String>();
+        account.put("nome", ACCOUNT_NAME);
 
-        CONTA_ID = given()
-                .body(conta)
+        ACCOUNT_ID = given()
+                .body(account)
                 .when()
                 .post("/contas")
                 .then()
                 .statusCode(201)
-                .body("nome", is(CONTA_NAME))
+                .body("nome", is(ACCOUNT_NAME))
                 .extract().path("id")
         ;
-        return CONTA_NAME;
+        return ACCOUNT_NAME;
     }
 
-    public static void criaContaRepetida() {
-        Map<String, String> conta = new HashMap<String, String>();
-        conta.put("nome", CONTA_NAME);
+    public static void createRepeatAccount() {
+        Map<String, String> account = new HashMap<String, String>();
+        account.put("nome", ACCOUNT_NAME);
 
         given()
-                .body(conta)
+                .body(account)
                 .when()
                 .post("/contas")
                 .then()
@@ -40,9 +40,9 @@ public class ContasFunc extends BaseTest {
         ;
     }
 
-    public static void removeConta() {
+    public static void removeAccount() {
         given()
-                .pathParam("id", CONTA_ID)
+                .pathParam("id", ACCOUNT_ID)
                 .when()
                 .delete("/contas/{id}")
                 .then()
@@ -50,9 +50,9 @@ public class ContasFunc extends BaseTest {
         ;
     }
 
-    public static void removeContaComMovimentacao() {
+    public static void removeAccountWithTransaction() {
         given()
-                .pathParam("id", CONTA_ID)
+                .pathParam("id", ACCOUNT_ID)
                 .when()
                 .delete("/contas/{id}")
                 .then()
@@ -60,18 +60,18 @@ public class ContasFunc extends BaseTest {
         ;
     }
 
-    public static void alteraConta() {
-        Map<String, String> conta = new HashMap<String, String>();
-        conta.put("nome", CONTA_NAME + "Alterada");
+    public static void changeAccount() {
+        Map<String, String> account = new HashMap<String, String>();
+        account.put("nome", ACCOUNT_NAME + "Changed");
 
         given()
-                .body(conta)
-                .pathParam("id", CONTA_ID)
+                .body(account)
+                .pathParam("id", ACCOUNT_ID)
                 .when()
                 .put("/contas/{id}")
                 .then()
                 .statusCode(200)
-                .body("nome", is(CONTA_NAME + "Alterada"))
+                .body("nome", is(ACCOUNT_NAME + "Changed"))
         ;
     }
 }

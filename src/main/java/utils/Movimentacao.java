@@ -1,6 +1,6 @@
 package utils;
 
-import static core.BaseTest.CONTA_ID;
+import static core.BaseTest.ACCOUNT_ID;
 import static utils.DateUtils.getDataDiferencaDias;
 
 public class Movimentacao {
@@ -17,8 +17,8 @@ public class Movimentacao {
 
     public static Movimentacao getMovimentacaoValida() {
         Movimentacao movimentacao = new Movimentacao();
-        movimentacao.setConta_id(CONTA_ID);
-        movimentacao.setDescricao("Movimentacao Teste");
+        movimentacao.setConta_id(ACCOUNT_ID);
+        movimentacao.setDescricao("Test transaction");
         movimentacao.setEnvolvido("Seu Barriga");
         movimentacao.setTipo("REC");
         movimentacao.setData_transacao(getDataDiferencaDias(-1));

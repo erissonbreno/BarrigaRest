@@ -1,49 +1,50 @@
 package tests;
 
-import org.junit.Test;
+import core.BaseTest;
+import org.junit.jupiter.api.Test;
 
 import static funcionalidades.ContasFunc.*;
 import static funcionalidades.MovimentacaoFunc.*;
 import static utils.DateUtils.getDataDiferencaDias;
 
-public class MovimentacaoTest {
+public class MovimentacaoTest extends BaseTest {
 
     @Test
-    public void deveInserirMovimentacaoComSucesso() {
-        criaConta();
-        criaMovimentacao();
-        removeMovimentacao();
-        removeConta();
+    public void shouldAddTransactionSuccessfully() {
+        createAccount();
+        createTransaction();
+        deleteTransaction();
+        removeAccount();
     }
 
     @Test
-    public void deveValidarCamposObrigatoriosMovimentacao() {
-        criaConta();
-        criaMovimentacaoInvalida();
-        removeConta();
+    public void shouldValidateTransactionRequiredFields() {
+        createAccount();
+        createInvalidTransaction();
+        removeAccount();
     }
 
     @Test
-    public void naoDeveCadastrarMovimentacaoFutura() {
-        criaConta();
-        criaMovimentacaoInvalida(getDataDiferencaDias(2));
-        removeConta();
+    public void shouldNotAddFutureTransaction() {
+        createAccount();
+        createInvalidTransaction(getDataDiferencaDias(2));
+        removeAccount();
     }
 
     @Test
-    public void naoDeveRemoverUmaContaComMovimentacao() {
-        criaConta();
-        criaMovimentacao();
-        removeContaComMovimentacao();
-        removeMovimentacao();
-        removeConta();
+    public void shouldNotRemoveAccountWithTransactions() {
+        createAccount();
+        createTransaction();
+        removeAccountWithTransaction();
+        deleteTransaction();
+        removeAccount();
     }
 
     @Test
-    public void deveRemoverMovimentacao() {
-        criaConta();
-        criaMovimentacao();
-        removeMovimentacao();
-        removeConta();
+    public void shouldRemoveTransaction() {
+        createAccount();
+        createTransaction();
+        deleteTransaction();
+        removeAccount();
     }
 }

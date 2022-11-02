@@ -1,33 +1,36 @@
 package tests;
 
-import org.junit.Test;
+
+import core.BaseTest;
+import org.junit.jupiter.api.Test;
 
 import static funcionalidades.ContasFunc.*;
 
-public class ContasTest {
+public class ContasTest extends BaseTest {
+
     @Test
-    public void deveIncluirContaComSucesso() {
-        criaConta();
-        removeConta();
+    public void shouldAddAccountSuccessfully() {
+        createAccount();
+        removeAccount();
     }
 
     @Test
-    public void deveAlterarContaComSucesso() {
-        criaConta();
-        alteraConta();
-        removeConta();
+    public void shouldChangeAccountSuccessfully() {
+        createAccount();
+        changeAccount();
+        removeAccount();
     }
 
     @Test
-    public void naoDeveIncluirContaComNomeRepetido() {
-        criaConta();
-        criaContaRepetida();
-        removeConta();
+    public void shouldNotAddAccountWithSameName() {
+        createAccount();
+        createRepeatAccount();
+        removeAccount();
     }
 
     @Test
-    public void deveRemoverConta() {
-        criaConta();
-        removeConta();
+    public void shouldRemoveAccount() {
+        createAccount();
+        removeAccount();
     }
 }

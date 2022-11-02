@@ -1,20 +1,21 @@
 package tests;
 
-import org.junit.Test;
+import core.BaseTest;
+import org.junit.jupiter.api.Test;
 
-import static funcionalidades.ContasFunc.criaConta;
-import static funcionalidades.ContasFunc.removeConta;
-import static funcionalidades.MovimentacaoFunc.criaMovimentacao;
-import static funcionalidades.MovimentacaoFunc.removeMovimentacao;
-import static funcionalidades.SaldoFunc.validaSaldo;
+import static funcionalidades.ContasFunc.createAccount;
+import static funcionalidades.ContasFunc.removeAccount;
+import static funcionalidades.MovimentacaoFunc.createTransaction;
+import static funcionalidades.MovimentacaoFunc.deleteTransaction;
+import static funcionalidades.SaldoFunc.validateBalance;
 
-public class SaldoTest {
+public class SaldoTest extends BaseTest {
     @Test
-    public void deveVerificarSaldoContas() {
-        criaConta();
-        criaMovimentacao();
-        validaSaldo();
-        removeMovimentacao();
-        removeConta();
+    public void shouldValidateAccountBalance() {
+        createAccount();
+        createTransaction();
+        validateBalance();
+        deleteTransaction();
+        removeAccount();
     }
 }
